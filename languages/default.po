@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Device Theme Switcher\n"
+"POT-Creation-Date: 2014-02-02 13:13+0100\n"
+"PO-Revision-Date: 2014-02-02 13:13+0100\n"
+"Last-Translator: Ray <ray@qstudio.us>\n"
+"Language-Team: Q Studio <team@qstudio.us>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: ../inc/class.core.php:50
+msgid "Settings"
+msgstr ""
+
+#: ../inc/class.shortcodes.php:6 ../inc/class.widgets.php:32
+msgid "View Full Website"
+msgstr ""
+
+#: ../inc/class.shortcodes.php:17 ../inc/class.widgets.php:73
+msgid "Return to Mobile Website"
+msgstr ""
+
+#: ../inc/class.switcher.php:227
+msgid "Device"
+msgstr ""
+
+#: ../inc/class.switcher.php:236 ../inc/class.wp-admin.php:198
+msgid "Handheld Theme"
+msgstr ""
+
+#: ../inc/class.switcher.php:237 ../inc/class.wp-admin.php:216
+msgid "Tablet Theme"
+msgstr ""
+
+#: ../inc/class.switcher.php:238 ../inc/class.wp-admin.php:234
+msgid "Desktop Theme"
+msgstr ""
+
+#: ../inc/class.switcher.php:239
+msgid "Low Support Theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:25
+msgid "Handheld Device Theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:26
+msgid "Tablet Device Theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:27
+msgid "Desktop Device Theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:39 ../inc/class.wp-admin.php:76
+msgid "Device Themes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:41
+msgid "Manage"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:61
+msgid "default"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:76
+msgid "Device Theme Switcher"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:187
+#, php-format
+msgid ""
+"You can read the <a href='#' class='dts_help_open'>%s</a> to find out more "
+"about the plugin settings."
+msgstr ""
+
+#: ../inc/class.wp-admin.php:188
+msgid "help documentation"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:208 ../inc/class.wp-admin.php:226
+#: ../inc/class.wp-admin.php:244
+msgid "Default"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:211 ../inc/class.wp-admin.php:229
+msgid "Handheld devices like Apple iPhone, Android, BlackBerry, and more."
+msgstr ""
+
+#: ../inc/class.wp-admin.php:247
+msgid "Desktops and laptops ( full-sized ) devices."
+msgstr ""
+
+#: ../inc/class.wp-admin.php:253
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:257 ../inc/class.wp-admin.php:444
+msgid "Show"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:265
+msgid "Low-Support Theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:269
+msgid "Use Handheld Setting"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:279
+msgid "Devices which lack complete CSS & JavaScipt Support."
+msgstr ""
+
+#: ../inc/class.wp-admin.php:286
+msgid "Session Lifetime"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:298
+msgid "Until Browser is closed"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:299
+msgid "5 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:300
+msgid "15 Minutes (Plugin Default)"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:301
+msgid "30 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:302
+msgid "45 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:303
+msgid "60 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:304
+msgid "75 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:305
+msgid "90 Minutes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:318
+msgid " (Set in php.ini)"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:323
+msgid " Minutes (Set in php.ini)"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:337
+msgid ""
+"Length of time until a user is redirected back to their initial device theme "
+"after they've requested the 'Desktop' Version.<br /><strong>Note:</strong> A "
+"lot of mobile browsers do not actually close and end the session!"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:358
+msgid "Helpful Links"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:361
+msgid "Support Forum"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:362
+msgid "FAQ"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:366
+msgid "Shortcodes"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:369 ../inc/class.wp-admin.php:380
+msgid "Display a link to 'View Full Website'"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:371 ../inc/class.wp-admin.php:383
+msgid "Display a link to 'Return to Mobile Website'"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:377
+msgid "Template Tags"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:389
+msgid "URL Paramaters"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:392
+msgid "Helpful for developers to view a specific device theme"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:432
+msgid "Device Switch Help"
+msgstr ""
+
+#: ../inc/class.wp-admin.php:442
+msgid "Hide"
+msgstr ""

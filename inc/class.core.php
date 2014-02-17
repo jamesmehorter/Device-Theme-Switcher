@@ -1,11 +1,15 @@
 <?php
     class DTS_Core {
+        
+        // text-domain
+        public static $text_domain = 'dts'; // for translation ##
+        
         // ------------------------------------------------------------------------------
         // INITILIZATION
         // ------------------------------------------------------------------------------
         static function init () { 
             //Define the DTS_VERSION constant
-            define('DTS_VERSION', 2.0);
+            define('DTS_VERSION', 2.4);
         }
         // ------------------------------------------------------------------------------
         // ACTIVATION
@@ -35,6 +39,7 @@
             delete_option('dts_handheld_theme');
             delete_option('dts_tablet_theme');
             delete_option('dts_low_support_theme');
+            delete_option('dts_default_theme');
             delete_option('dts_session_lifetime');
         }
         //Add a 'Settings' link to the plugin row in the wp-admin > Plugins page

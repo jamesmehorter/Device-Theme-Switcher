@@ -4,34 +4,37 @@
 	//		+ This class is instantiated in dts_controller.php on each WordPress load (only public, nothing is instantiated within the admin)
 	// ------------------------------------------------------------------------
 	class DTS_Switcher {
+            
 		public function __construct() {
-			//Retrieve the admin's saved device theme
-			$this->retrieve_saved_device_themes();
-			//Detect the user's device			
-			$this->device = $this->detect_device();
-			//Deliver theme
-			$this->deliver_theme();
+                    
+                    //Retrieve the admin's saved device theme
+                    $this->retrieve_saved_device_themes();
+                    //Detect the user's device			
+                    $this->device = $this->detect_device();
+                    //Deliver theme
+                    $this->deliver_theme();
+                    
 		}//__construct
+                
 		// ------------------------------------------------------------------------
 		// RETRIEVE DEVICE THEME SELECTION SET BY ADMIN
 		// ------------------------------------------------------------------------
-		public function retrieve_saved_device_themes () {			
+		public function retrieve_saved_device_themes () {
+                    
 		    //The theme option is a url encoded string containing 3 values for name, template, and stylesheet
 		    //See the ->active_theme array below for an idea of what is within each 
 		    parse_str(get_option('dts_handheld_theme'), $this->handheld_theme);
 		    parse_str(get_option('dts_tablet_theme'), $this->tablet_theme);
+                    parse_str(get_option('dts_desktop_theme'), $this->desktop_theme);
 		    parse_str(get_option('dts_low_support_theme'), $this->low_support_theme);
-		    //Retrieve the current active theme
-		    $this->active_theme = array(
-		    	'name' => get_option('current_theme'),
-		    	'template' => get_option('template'),
-				'stylesheet' => get_option('stylesheet')
-		   	);
+                    
 		}//retrieve_saved_device_themes
+                
 		// ------------------------------------------------------------------------
 		// DEVICE DETECTION
 		// ------------------------------------------------------------------------
 		public function detect_device () {
+                    
 			//Default is active (default computer theme set by the admin) until it's overridden
 			$device = 'active';
 
@@ -69,14 +72,17 @@
 				//Detect if the device is a low_support device (poor javascript and css support / text-only)
 				if ($ua->DetectBlackBerryLow() || $ua->DetectTierOtherPhones()) $device = $low_support_device ;
 			endif;
+                        
 			//Return the user's device
 			return $device ;
+                        
 		}//deliver_theme_to_device
 		// ------------------------------------------------------------------------
 		// THEME DELIVER LOGIC
 		// ------------------------------------------------------------------------
 		//Called via add_filter('template', array('DTS_Switcher', 'deliver_template'), 10, 0); in dts_controller.php
 		public function deliver_theme () {
+                    
 			$this->theme_override = $requested_theme = "";
 			//Is the user requesting a theme override?
 			//This is how users can 'view full website' and vice versa
@@ -147,14 +153,49 @@
 		// Return a theme file, template or stylesheet
 		// ------------------------------------------------------------------------------
 		static function deliver_theme_file ($file) {
-			global $dts; //see the dts::__contruct for a walkthrough on how this object is created
-			//Update the active theme setting (so that other plugins can modify pre_option_template or pre_option_stylesheet)
-		    $dts->active_theme = array(
-		    	'name' => get_option('current_theme'),
-		    	'template' => get_option('template'),
-				'stylesheet' => get_option('stylesheet')
-		   	);
+                    
+                        //see the dts::__construct for a walkthrough on how this object is created
+			global $dts; 
+                        
+                        // what theme should we be using as the default ##
+                        $default_theme = get_option( 'dts_default_theme', false );
+                        if ( $default_theme ) {
+                            
+                            parse_str( get_option( $default_theme ), $dts->default_theme );
+                            
+                            // let's check we have everything we need to call this the active theme ##
+                            if ( ! empty ( $dts->default_theme["name"] ) && ! empty ( $dts->default_theme["template"] ) && ! empty ( $dts->default_theme["stylesheet"] ) ) {
+                            
+                                // Retrieve the stored default theme
+                                $dts->active_theme = array(
+                                    'name' => $dts->default_theme["name"],
+                                    'template' => $dts->default_theme["template"],
+                                    'stylesheet' => $dts->default_theme["stylesheet"]
+                                );
+                            
+                            } else {
+                                
+                                #pr($dts->default_theme);
+                                #wp_die("failed to load default theme...");
+                                $default_theme = false;
+                                
+                            }
+                                    
+                        }                            
+                        
+                        // backup to active theme ##
+                        if ( ! $default_theme ) {
 
+                            //Update the active theme setting (so that other plugins can modify pre_option_template or pre_option_stylesheet)
+                            $dts->active_theme = array(
+                                'name' => get_option('current_theme'),
+                                'template' => get_option('template'),
+                                'stylesheet' => get_option('stylesheet')
+                            );
+                        
+                        }
+                        
+			
 			if (!empty($dts->{$dts->theme_override . "_theme"})) : return $dts->{$dts->theme_override . "_theme"}[$file]; 
 			elseif (!empty($dts->{$dts->device . "_theme"})) : return $dts->{$dts->device . "_theme"}[$file]; 
 			else : return $dts->active_theme[$file] ; endif;
@@ -197,4 +238,66 @@
 			if ($echo) : echo $html_output; ## Echo the HTML link
 			else : return $html_output; endif; ## Return the HTML link
 		}
+                
+                
+                /**
+                * Add Admin Bar menu item ##
+                * 
+                * @since      2.4.0
+                * @link       http://blog.rutwick.com/add-items-anywhere-to-the-wp-3-3-admin-bar
+                * @return     void
+                */
+                public static function admin_bar_menu( $admin_bar )
+                {
+                    
+                    $args = array(
+                        'id'        => 'dts-switch'
+                        ,'title'    => 'Device'
+                        ,'href'     => '#'
+                        ,'meta'     => array(
+                                        'title' => __('Device')
+                                    )
+                    );
+
+                    // parent menu ##
+                    $admin_bar->add_menu( $args);
+                    
+                    // array of children menu items ##
+                    $children = array(
+                            array( 'id' => 'dts-switch-handheld', 'title' => __('Handheld Theme', 'dts' ), 'url' => '?theme=handheld' )
+                        ,   array('id' => 'dts-switch-tablet', 'title' => __('Tablet Theme', 'dts' ), 'url' => '?theme=tablet' )
+                        ,   array('id' => 'dts-switch-desktop', 'title' => __('Desktop Theme', 'dts'), 'url' => '?theme=desktop' )
+                        ,   array('id' => 'dts-switch-low-support', 'title' => __('Low Support Theme', 'dts' ), 'url' => '?theme=low_support' )
+                    );
+                    
+                    // get the current URL ##
+                    #global $wp;
+                    #$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+                    
+                    // todo - need to get the current page URL and check for anything in the querystring - then append the "theme" argument and value correctly ##
+                    
+                    // loop over array and add each child item ##
+                    foreach ( $children as $child ) {
+                        
+                        $args = array(
+                            'id'        => $child["id"]
+                            ,'title'    => $child["title"]
+                            ,'href'     => $child["url"]
+                            ,'meta'     => array(
+                                            'title' => $child["title"]
+                                        )
+                            ,'parent'   => 'dts-switch'
+                        );
+
+                        // child menu items##
+                        $admin_bar->add_menu( $args);
+                    
+                    }
+
+                }
+                
+                
+                
+                
+                
 	} //END DTS_Switcher Class

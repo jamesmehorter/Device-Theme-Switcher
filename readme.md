@@ -187,6 +187,14 @@ Tablet theme page.php
 
 ## Changelog 
 
+* _Version 2.4 - Released 02/17/2014_
+    * Added .mo files for plugin translations
+    * Updated dashboard widget to show default theme and link to theme/customization option directly
+    * Extended theme device settings UI to allow for mobile or handheld to be default theme
+    * Updated DTS Settings page to WordPress 3.8 style
+    * Updated mobileESP to version 2013.10.27
+    * Added front-end menu option to switch between themes
+
 * _Version 2.3 - Released 09/16/2013_
     * FIX - Corrected an issue which caused a PHP error to be thrown under odd conditions. Thanks Davis Wuolle! 
 
