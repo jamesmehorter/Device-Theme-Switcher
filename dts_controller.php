@@ -74,7 +74,8 @@ add_action('load-appearance_page_device-themes', array('DTS_Admin', 'load'));
 // THEME SWITCHING
 // ------------------------------------------------------------------------
 //We only want to tap into the theme filters if a frontend page is being requested
-if ( !is_admin()) :
+// OR if there is an AJAX requests - which even if it's coming from the front-end will return a value of "true" for is_admin()
+if ( ! is_admin() || ( defined('DOING_AJAX') && DOING_AJAX ) ) :
 
     //Include our external device theme switcher class library
     include_once('inc/class.switcher.php');
