@@ -31,9 +31,6 @@
             #$active_theme = wp_get_theme();
             #pr($active_theme->stylesheet);
             
-            // get the default theme ##
-            $default_theme = get_option( "dts_default_theme", false );
-            
             printf(
                     "<h4 style='font-weight: bold; display: inline-block;'>%s</h4><span style='padding-left: 15px;'>[ <a href='%s'>%s</a> ]</span>"
                 ,   __( "Device Themes", DTS_Core::$text_domain )
@@ -54,11 +51,11 @@
                 if ( ! $dts['themes'][$key] ) { continue; }
                 
                 printf (
-                        "%s - <a href='%s'><strong>%s</strong></a>%s<br>"
+                        "%s - <a href='%s'><strong>%s</strong></a><br>"
                     ,   esc_html( $value )
                     ,   esc_url( admin_url('customize.php?theme='.$dts['themes'][$key]["stylesheet"] ) )
                     ,   esc_html( $dts['themes'][$key]["name"] )
-                    ,   ( $default_theme == "dts_{$key}_theme" ) ? ' - [ '.__("default").' ]' : ''
+                    #,   ( $default_theme == "dts_{$key}_theme" ) ? ' - [ '.__("default").' ]' : ''
                 );
                 
             }
@@ -166,7 +163,7 @@
             parse_str( get_option('dts_low_support_theme'), $dts['themes']['low_support'] );
             
             // get the default theme - if not selected use the current active theme in WP ##
-            $dts_default_theme = get_option('dts_default_theme', 'dts_desktop_theme' );
+            #$dts_default_theme = get_option('dts_default_theme', 'dts_desktop_theme' );
 
             // grab the current active theme ##
             $active_theme = wp_get_theme();
@@ -202,12 +199,6 @@
                                             <option value="<?php echo build_query($theme)?>" <?php selected($theme['name'], $dts['themes']['handheld']['name']) ?>><?php echo $theme['name'] ?> &nbsp; </option>
                                         <?php endforeach ?>
                                     </select>
-                                    <label title="dts_default_handheld">
-                                        <span class="radio">
-                                            <input type="radio" name="dts_theme[dts_default_theme]" value="dts_handheld_theme" <?php checked( $dts_default_theme, 'dts_handheld_theme' ); ?>/>
-                                            <span><?php _e("Default") ?></span>
-                                        </span>
-                                    </label>
                                     <p class="description"><?php _e("Handheld devices like Apple iPhone, Android, BlackBerry, and more.") ?></p>
                                 </td>
                             </tr>
@@ -220,12 +211,6 @@
                                             <option value="<?php echo build_query($theme)?>" <?php selected($theme['name'], $dts['themes']['tablet']['name']) ?>><?php echo $theme['name'] ?> &nbsp; </option>
                                         <?php endforeach ?>
                                     </select>
-                                    <label title="dts_default_tablet">
-                                        <span class="radio">
-                                            <input type="radio" name="dts_theme[dts_default_theme]" value="dts_tablet_theme" <?php checked( $dts_default_theme, 'dts_tablet_theme' ); ?>/>
-                                            <span><?php _e("Default") ?></span>
-                                        </span>
-                                    </label>
                                     <p class="description"><?php _e("Handheld devices like Apple iPhone, Android, BlackBerry, and more.") ?></p>
                                 </td>
                             </tr>
@@ -238,12 +223,6 @@
                                             <option value="<?php echo build_query($theme)?>" <?php selected($theme['name'], $dts['themes']['desktop']['name']) ?>><?php echo $theme['name'] ?> &nbsp; </option>
                                         <?php endforeach ?>
                                     </select>
-                                    <label title="dts_default_desktop">
-                                        <span class="radio">
-                                            <input type="radio" name="dts_theme[dts_default_theme]" value="dts_desktop_theme" <?php checked( $dts_default_theme, 'dts_desktop_theme' ); ?>/>
-                                            <span><?php _e("Default") ?></span>
-                                        </span>
-                                    </label>
                                     <p class="description"><?php _e("Desktops and laptops ( full-sized ) devices.") ?></p>
                                 </td>
                             </tr>

@@ -39,7 +39,6 @@
             delete_option('dts_handheld_theme');
             delete_option('dts_tablet_theme');
             delete_option('dts_low_support_theme');
-            delete_option('dts_default_theme');
             delete_option('dts_session_lifetime');
         }
         //Add a 'Settings' link to the plugin row in the wp-admin > Plugins page
