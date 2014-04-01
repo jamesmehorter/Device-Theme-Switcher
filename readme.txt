@@ -1,9 +1,9 @@
 === Plugin Name ===
 Plugin Name: Device Theme Switcher
-Contributors: jamesmehorter
+Contributors: jamesmehorter, qlstudio
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 2.3
+Tested up to: 3.8.1
+Stable tag: 2.4
 Tags: Theme, Switch, Change, Mobile, Mobile Theme, Handheld, Tablet, iPad, iPhone, Android, Blackberry, Tablet Theme, Different Themes, Device Theme
 Author URI: http://www.jamesmehorter.com/
 Donate Link: http://www.jamesmehorter.com/donate/
@@ -185,6 +185,13 @@ Tablet theme page.php
 `dynamic_sidebar('Tablet Theme Sidebar');`
 
 == Changelog ==
+
+= Version 2.4 - Released 02/17/2014 = 
+* Added .pot files for plugin translations
+* Updated dashboard widget to link to theme/customization option directly
+* Updated DTS Settings page to WordPress 3.8 style
+* Updated mobileESP to version 2013.10.27
+* Added front-end menu option to switch between themes
 
 = Version 2.3 - Released 09/16/2013 = 
 * FIX - Corrected an issue which caused a PHP error to be thrown under odd conditions. Thanks Davis Wuolle! 

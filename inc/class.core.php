@@ -1,11 +1,15 @@
 <?php
     class DTS_Core {
+        
+        // text-domain
+        public static $text_domain = 'dts'; // for translation ##
+        
         // ------------------------------------------------------------------------------
         // INITILIZATION
         // ------------------------------------------------------------------------------
         static function init () { 
             //Define the DTS_VERSION constant
-            define('DTS_VERSION', 2.0);
+            define('DTS_VERSION', 2.4);
         }
         // ------------------------------------------------------------------------------
         // ACTIVATION
